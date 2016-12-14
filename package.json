@@ -8,7 +8,6 @@
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
     "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
-    "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
@@ -30,6 +29,9 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.15.3",
+    "lodash": "^4.17.2",
+    "normalizr": "^2.3.0",
     "object-assign": "4.1.0",
     "react": "15.3.2",
     "react-dom": "15.3.2",
@@ -71,8 +73,8 @@
     "html-webpack-plugin": "2.24.0",
     "isparta": "4.0.0",
     "istanbul": "0.4.4",
-    "json-loader": "0.5.4",
     "jsdom": "8.5.0",
+    "json-loader": "0.5.4",
     "mocha": "3.1.2",
     "mockdate": "1.0.4",
     "node-sass": "3.10.1",
