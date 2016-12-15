@@ -30,6 +30,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jwt-decode": "^2.1.0",
     "lodash": "^4.17.2",
     "normalizr": "^2.3.0",
     "object-assign": "4.1.0",

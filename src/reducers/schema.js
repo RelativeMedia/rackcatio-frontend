@@ -10,52 +10,60 @@ const domainSchema   = new Schema('domain');
 const userSchema     = new Schema('user');
 const commentSchema  = new Schema('comment');
 
+const arrayOfItems     = arrayOf(itemSchema);
+const arrayOfLocations = arrayOf(locationSchema);
+const arrayOfRacks     = arrayOf(rackSchema);
+const arrayOfSubnets   = arrayOf(subnetSchema);
+const arrayOfDomains   = arrayOf(domainSchema);
+const arrayOfUsers     = arrayOf(userSchema);
+const arrayOfComments  = arrayOf(commentSchema);
+
 itemSchema.define({
   rack: rackSchema,
-  subnets: arrayOf(subnetSchema),
-  domains: arrayOf(domainSchema),
-  comments: arrayOf(commentSchema),
+  subnets: arrayOfSubnets,
+  domains: arrayOfDomains,
+  comments: arrayOfComments,
   createdBy: userSchema,
   updatedBy: userSchema
 });
 locationSchema.define({
-  racks: arrayOf(rackSchema),
-  subnets: arrayOf(subnetSchema),
-  domains: arrayOf(domainSchema),
-  comments: arrayOf(commentSchema),
+  racks: arrayOfRacks,
+  subnets: arrayOfSubnets,
+  domains: arrayOfDomains,
+  comments: arrayOfComments,
   createdBy: userSchema,
   updatedBy: userSchema
 });
 rackSchema.define({
-  items: arrayOf(itemSchema),
+  items: arrayOfItems,
   location: locationSchema,
-  comments: arrayOf(commentSchema),
+  comments: arrayOfComments,
   createdBy: userSchema,
   updatedBy: userSchema
 })
 subnetSchema.define({
+  items: arrayOfItems,
   location: locationSchema,
-  items: arrayOf(itemSchema),
-  domains: arrayOf(domainSchema),
-  comments: arrayOf(commentSchema),
+  comments: arrayOfComments,
+  domains: arrayOfDomains,
   createdBy: userSchema,
   updatedBy: userSchema
 })
 domainSchema.define({
+  items: arrayOfItems,
   location: locationSchema,
-  items: arrayOf(itemSchema),
-  subnets: arrayOf(subnetSchema),
-  comments: arrayOf(commentSchema),
+  comments: arrayOfComments,
+  subnets: arrayOfSubnets,
   createdBy: userSchema,
   updatedBy: userSchema
 });
 userSchema.define({
-  locations: arrayOf(locationSchema),
-  items: arrayOf(itemSchema),
-  subnets: arrayOf(subnetSchema),
-  domains: arrayOf(domainSchema),
-  racks: arrayOf(rackSchema),
-  comments: arrayOf(commentSchema),
+  items: arrayOfItems,
+  location: locationSchema,
+  comments: arrayOfComments,
+  subnets: arrayOfSubnets,
+  domains: arrayOfDomains,
+  racks: arrayOfRacks,
   createdBy: userSchema,
   updatedBy: userSchema
 });
@@ -65,11 +73,17 @@ commentSchema.define({
 });
 
 export default {
-  itemSchema,
-  locationSchema,
-  rackSchema,
-  subnetSchema,
-  domainSchema,
-  userSchema,
-  commentSchema
+  item: itemSchema,
+  location: locationSchema,
+  rack: rackSchema,
+  subnet: subnetSchema,
+  domain: domainSchema,
+  user: userSchema,
+  comment: commentSchema,
+  arrayOfItems,
+  arrayOfLocations,
+  arrayOfRacks,
+  arrayOfSubnets,
+  arrayOfUsers,
+  arrayOfComments
 }

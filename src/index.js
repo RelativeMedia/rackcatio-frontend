@@ -11,7 +11,7 @@ import configureStore from './store/configureStore';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 const store = configureStore();
-
+import './styles/core.scss';
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);
 

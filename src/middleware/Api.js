@@ -28,7 +28,8 @@ const Api = {
       const url = _buildUrl(endpoint, p)
       console.trace('Api::get::initial', url, p, headers)
 
-      return axios.get(url, {
+      return axios({
+        url,
         method: 'GET',
         p,
         headers
@@ -43,7 +44,39 @@ const Api = {
         })
     })
   },
-  // post,
+  post: (endpoint, params, payload) => {
+    return new Promise(function (resolve, reject) {
+      let p = _.merge({}, params)
+      let headers = _.merge({}, p.headers)
+      if (p.auth) {
+        delete p.auth
+        headers.authorization = 'Bearer ' + token
+      }
+
+      if (p.populate) {
+        p.populate = p.populate.join(',')
+      }
+
+      const url = _buildUrl(endpoint, p)
+      console.trace('Api::post::initial', url, p, headers, payload)
+
+      return axios({
+        url,
+        method: 'POST',
+        p,
+        headers,
+        data: payload
+      })
+        .then((response) => {
+          console.trace('Api::post::response', url)
+          return resolve(response)
+        })
+        .catch((error) => {
+          console.error('Api::post::error', error.message, error.response)
+          return reject({ ...error.response })
+        })
+    })
+  },
   // put,
   // delete
 }
