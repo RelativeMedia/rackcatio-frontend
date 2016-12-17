@@ -2,7 +2,8 @@
 # React Slingshot!
 
 [ ![Codeship Status for RelativeMedia/rackcatio-frontend](https://app.codeship.com/projects/3d4b30f0-a634-0134-65d8-22bb7c6a87bc/status?branch=master)](https://app.codeship.com/projects/191051)  [![Coverage Status](https://coveralls.io/repos/github/RelativeMedia/rackcatio-frontend/badge.svg?branch=development)](https://coveralls.io/github/RelativeMedia/rackcatio-frontend?branch=development)
-React Slingshot is a comprehensive starter kit for rapid application development using React. 
+
+React Slingshot is a comprehensive starter kit for rapid application development using React.
 
 Why Slingshot?
 
