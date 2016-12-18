@@ -1,16 +1,18 @@
 /**
  * Created by mhdevita on 12/14/16.
  */
-import axios from 'axios';
-import _ from 'lodash';
+import axios from 'axios'
+import _ from 'lodash'
+import log from './logger'
+import { actions as Auth } from '../reducers/auth'
 
 const _buildUrl = (endpoint, params) => {
-  let url = 'http://localhost:1337/v1';
+  let url = 'http://localhost:1337/v1'
   url += '/' + endpoint.toLowerCase()
-  return url;
+  return url
 }
 
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6MSwiaWF0IjoxNDgxNzI5NzY3LCJleHAiOjE0ODE4MTYxNjd9.NhPAZtVlUERz-_SrgLG1l7-l8A4DNmKo0UFOI88ol0u79gmBGk4WGDWfA8-YxY4riV7fSCjGL6m23mTJ5Qb3_A';
+// const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6MSwiaWF0IjoxNDgxNzI5NzY3LCJleHAiOjE0ODE4MTYxNjd9.NhPAZtVlUERz-_SrgLG1l7-l8A4DNmKo0UFOI88ol0u79gmBGk4WGDWfA8-YxY4riV7fSCjGL6m23mTJ5Qb3_A'
 const Api = {
   get: (endpoint, params) => {
     return new Promise(function (resolve, reject) {
@@ -18,7 +20,7 @@ const Api = {
       let headers = _.merge({}, p.headers)
       if (p.auth) {
         delete p.auth
-        headers.authorization = 'Bearer ' + token
+        headers.authorization = 'Bearer ' + Auth.getToken()
       }
 
       if (p.populate) {
@@ -26,7 +28,7 @@ const Api = {
       }
 
       const url = _buildUrl(endpoint, p)
-      console.trace('Api::get::initial', url, p, headers)
+      log.debug('Api::get::initial', url, p, headers)
 
       return axios({
         url,
@@ -35,11 +37,11 @@ const Api = {
         headers
       })
         .then((response) => {
-          console.trace('Api::get::response', url)
+          log.debug('Api::get::response', url)
           return resolve(response)
         })
         .catch((error) => {
-          console.error('Api::get::error', error.message, error.response)
+          log.error('Api::get::error', error.message, error.response)
           return reject({ ...error.response })
         })
     })
@@ -58,7 +60,7 @@ const Api = {
       }
 
       const url = _buildUrl(endpoint, p)
-      console.trace('Api::post::initial', url, p, headers, payload)
+      log.debug('Api::post::initial', url, p, headers, payload)
 
       return axios({
         url,
@@ -68,11 +70,11 @@ const Api = {
         data: payload
       })
         .then((response) => {
-          console.trace('Api::post::response', url)
+          log.debug('Api::post::response', url)
           return resolve(response)
         })
         .catch((error) => {
-          console.error('Api::post::error', error.message, error.response)
+          log.error('Api::post::error', error.message, error.response)
           return reject({ ...error.response })
         })
     })
@@ -81,4 +83,4 @@ const Api = {
   // delete
 }
 
-export default Api;
+export default Api

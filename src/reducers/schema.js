@@ -1,22 +1,22 @@
 /**
  * Created by mhdevita on 12/14/16.
  */
-import { Schema, arrayOf } from 'normalizr';
-const itemSchema     = new Schema('item');
-const locationSchema = new Schema('location');
-const rackSchema     = new Schema('rack');
-const subnetSchema   = new Schema('subnet');
-const domainSchema   = new Schema('domain');
-const userSchema     = new Schema('user');
-const commentSchema  = new Schema('comment');
+import { Schema, arrayOf } from 'normalizr'
+const itemSchema     = new Schema('item')
+const locationSchema = new Schema('location')
+const rackSchema     = new Schema('rack')
+const subnetSchema   = new Schema('subnet')
+const domainSchema   = new Schema('domain')
+const userSchema     = new Schema('user')
+const commentSchema  = new Schema('comment')
 
-const arrayOfItems     = arrayOf(itemSchema);
-const arrayOfLocations = arrayOf(locationSchema);
-const arrayOfRacks     = arrayOf(rackSchema);
-const arrayOfSubnets   = arrayOf(subnetSchema);
-const arrayOfDomains   = arrayOf(domainSchema);
-const arrayOfUsers     = arrayOf(userSchema);
-const arrayOfComments  = arrayOf(commentSchema);
+const arrayOfItems     = arrayOf(itemSchema)
+const arrayOfLocations = arrayOf(locationSchema)
+const arrayOfRacks     = arrayOf(rackSchema)
+const arrayOfSubnets   = arrayOf(subnetSchema)
+const arrayOfDomains   = arrayOf(domainSchema)
+const arrayOfUsers     = arrayOf(userSchema)
+const arrayOfComments  = arrayOf(commentSchema)
 
 itemSchema.define({
   rack: rackSchema,
@@ -25,7 +25,7 @@ itemSchema.define({
   comments: arrayOfComments,
   createdBy: userSchema,
   updatedBy: userSchema
-});
+})
 locationSchema.define({
   racks: arrayOfRacks,
   subnets: arrayOfSubnets,
@@ -33,7 +33,7 @@ locationSchema.define({
   comments: arrayOfComments,
   createdBy: userSchema,
   updatedBy: userSchema
-});
+})
 rackSchema.define({
   items: arrayOfItems,
   location: locationSchema,
@@ -56,7 +56,7 @@ domainSchema.define({
   subnets: arrayOfSubnets,
   createdBy: userSchema,
   updatedBy: userSchema
-});
+})
 userSchema.define({
   items: arrayOfItems,
   location: locationSchema,
@@ -66,11 +66,11 @@ userSchema.define({
   racks: arrayOfRacks,
   createdBy: userSchema,
   updatedBy: userSchema
-});
+})
 commentSchema.define({
   createdBy: userSchema,
   updatedBy: userSchema
-});
+})
 
 export default {
   item: itemSchema,

@@ -1,1 +1,28 @@
 @import '_base.scss';
+$sidebarWidth: 260px;
+
+.sidebar {
+  width: $sidebarWidth;
+  background-color: whitesmoke;
+  min-height: 300px;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 47px;
+  padding-top:20px;
+}
+
+.main-panel {
+  min-width: calc(100% - #{$sidebarWidth});
+  position: relative;
+  float: right;
+  min-height: 100%;
+}
+
+.sidebar .profilePhoto > .img {
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.sidebar .greeting {
+  font-weight: bold;
+}

@@ -1,15 +1,22 @@
 /**
  * Created by mhdevita on 12/14/2016.
  */
-import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
-import { actions as Auth } from '../../../reducers/auth';
+import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
+import { actions as Auth } from '../../../reducers/auth'
 
-const { object, element } = PropTypes;
+const { object } = PropTypes
 
 class LoginComponent extends Component {
+  static contextTypes = {
+    store: object.isRequired,
+    router: object.isRequired
+  }
+  static propTypes = {
+  }
+
   constructor  (props) {
-    super(props);
+    super(props)
 
     this.state = {
       isSubmitting: false,
@@ -20,63 +27,32 @@ class LoginComponent extends Component {
       passwordValid: false
     }
   }
-  static contextTypes = {
-    store: object.isRequired,
-    router: object.isRequired
-  }
-
-  static propTypes = {
-    auth: object
-  }
-
-  componentWillMount() {
-    const { auth } = this.props;
-    const { store: { dispatch }, router } = this.context;
-
-    if (!auth.user || !auth.token) {
-      dispatch(Auth.setup());
-      router.replace('/app');
-    } else {
-      this.checkAuth(auth.isAuthenticated);
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.checkAuth(nextProps.auth.isAuthenticated);
-  }
-
-  checkAuth(isAuthenticated) {
-    const { router } = this.context
-    if (!isAuthenticated) {
-      router.replace('/auth/login');
-    }
-  };
 
   _handleIdentityUpdate = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     this.setState({
       identity: this.refs.identity.value,
       identityValid: (this.refs.identity.value.length > 0) ? true : false,
       formInvalid: (this.refs.identity.value.length > 0 && this.state.passwordValid) ? false : true
-    });
+    })
   }
 
   _handlePasswordUpdate = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     this.setState({
       password: this.refs.password.value,
       passwordValid: (this.refs.password.value.length > 0) ? true : false,
       formInvalid: (this.refs.password.value.length > 0 && this.state.identityValid) ? false : true
-    });
+    })
   }
 
   _handleLogin = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     this.setState({
       isSubmitting: true
-    });
+    })
 
-    const { dispatch } = this.context.store;
+    const { dispatch } = this.context.store
     const { identity, password } = this.state
     dispatch(Auth.login({ identity, password }))
   }
@@ -95,7 +71,7 @@ class LoginComponent extends Component {
               <input
                 type="text"
                 ref="identity"
-                onChange={(event) => this._handleIdentityUpdate(event) }
+                onChange={(event) => this._handleIdentityUpdate(event)}
                 placeholder="username or email"
                 className="form-control input-lg" />
             </div>
@@ -104,7 +80,7 @@ class LoginComponent extends Component {
               <input
                 type="password"
                 ref="password"
-                onChange={(event) => this._handlePasswordUpdate(event) }
+                onChange={(event) => this._handlePasswordUpdate(event)}
                 placeholder="password"
                 className="form-control input-lg" />
             </div>
@@ -113,7 +89,7 @@ class LoginComponent extends Component {
       </div>
       <div className="row">
         <div className="col-md-offset-3 col-xs-6">
-          <button disabled={this.state.formInvalid || this.state.isSubmitting} onClick={(event) => this._handleLogin(event) } className="btn btn-lg btn-primary">
+          <button disabled={this.state.formInvalid || this.state.isSubmitting} onClick={(event) => this._handleLogin(event)} className="btn btn-lg btn-primary">
             {this.state.isSubmitting
               ? <i className="fa fa-circle-o-notch fa-spin fa-fw" />
               : 'Login'
@@ -121,11 +97,11 @@ class LoginComponent extends Component {
           </button>
         </div>
       </div>
-    </div>);
+    </div>)
   }
 }
 
 const mapStateToProps = (state) => ({
   auth: state.auth
-});
-export default  connect(mapStateToProps)(LoginComponent);
+})
+export default  connect(mapStateToProps)(LoginComponent)

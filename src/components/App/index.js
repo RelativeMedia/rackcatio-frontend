@@ -1,15 +1,18 @@
 /**
  * Created by mhdevita on 12/14/2016.
  */
-import React, { PropTypes } from 'react';
+import Dashboard from './Dashboard'
+// import Rack from './Rack'
+import Subnet from './Subnet'
+// import Item from './Item'
+// import Location from './Location'
+// import Domain from './Domain'
 
-const { object, element } = PropTypes;
-const AppHomeComponent = (props) => (<div className="AppHomeComponent">
-  <h1>App Home Component</h1>
-</div>);
-
-AppHomeComponent.propTypes = {
-
+export {
+  Dashboard,
+  // Rack,
+  // Item,
+  Subnet,
+  // Location,
+  // Domain
 }
-
-export default AppHomeComponent;

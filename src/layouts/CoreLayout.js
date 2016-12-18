@@ -2,35 +2,41 @@
  * Created by mhdevita on 12/14/16.
  */
 
-import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
+import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
 
-const { object, element } = PropTypes;
+const { object, element } = PropTypes
 class CoreLayout extends Component {
   static contextTypes = {
-    store: object
+    store: object,
+    router: object
   }
 
-  componentDidMount () {
-    const { dispatch } = this.context.store;
+  static propTypes = {
+    children: element.isRequired,
+    data: object.isRequired
   }
 
   render() {
-    const { children } = this.props;
-    return ( <div className="CoreLayout">
-      <div className="container">
-        {children}
+    const { children, app, auth: { user } } = this.props
+    const { router } = this.context
+    return (<div className="CoreLayout">
+      <Header />
+      <div className="container-fluid">
+        <Sidebar user={user} isActive={router.isActive} navigation={app.navigation} />
+        <div className="main-panel">
+          {children}
+        </div>
       </div>
-    </div>);
+    </div>)
   }
 }
 
-CoreLayout.propTypes = {
-  children: element.isRequired,
-  data: object.isRequired
-};
-
 const mapStateToProps = (state) => ({
-  data: state.data
-});
-export default connect(mapStateToProps)(CoreLayout);
+  data: state.data,
+  app: state.app,
+  auth: state.auth
+})
+export default connect(mapStateToProps)(CoreLayout)

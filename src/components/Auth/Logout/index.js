@@ -1,10 +1,9 @@
 /**
  * Created by mhdevita on 12/14/2016.
  */
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react'
 
-const { object, element } = PropTypes;
-const LogoutComponent = (props) => (<div className="LogoutComponent">
+const LogoutComponent = () => (<div className="LogoutComponent">
   <div className="row">
     <form className="form">
       <div className="form-group">
@@ -21,10 +20,10 @@ const LogoutComponent = (props) => (<div className="LogoutComponent">
       </div>
     </form>
   </div>
-</div>);
+</div>)
 
 LogoutComponent.propTypes = {
 
 }
 
-export default LogoutComponent;
+export default LogoutComponent

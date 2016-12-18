@@ -25,7 +25,7 @@ const ACTION_HANDLERS = {
 }
 
 let initialState = {}
-lodash.each(KEYS, (k, v) => {
+lodash.each(KEYS, (k) => {
   if (k !== 'undefined') {
   initialState[k] = false
 }

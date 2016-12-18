@@ -1,15 +1,11 @@
 /**
  * Created by mhdevita on 12/14/2016.
  */
-import React, { PropTypes } from 'react';
+import React  from 'react'
+import Navigation from '../../containers/Navigation'
 
-const { object, element } = PropTypes;
-const HeaderComponent = (props) => (<div className="HeaderComponent">
+const HeaderComponent = () => (<div className="HeaderComponent">
   <Navigation />
 </div>);
 
-HeaderComponent.propTypes = {
-
-}
-
-export default HeaderComponent;
+export default HeaderComponent

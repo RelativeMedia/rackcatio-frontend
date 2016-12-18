@@ -1,4 +1,7 @@
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $fa-font-path: '~font-awesome/fonts';
+@import 'vendor/_bootswatch_variables.scss';
+@import 'vendor/_bootswatch.scss';
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 @import '~font-awesome/scss/font-awesome.scss';
+//@import '~react-table/react-table.css';
