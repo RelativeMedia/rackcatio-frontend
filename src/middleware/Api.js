@@ -12,7 +12,6 @@ const _buildUrl = (endpoint, params) => {
   return url
 }
 
-// const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6MSwiaWF0IjoxNDgxNzI5NzY3LCJleHAiOjE0ODE4MTYxNjd9.NhPAZtVlUERz-_SrgLG1l7-l8A4DNmKo0UFOI88ol0u79gmBGk4WGDWfA8-YxY4riV7fSCjGL6m23mTJ5Qb3_A'
 const Api = {
   get: (endpoint, params) => {
     return new Promise(function (resolve, reject) {
